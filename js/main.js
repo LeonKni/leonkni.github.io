@@ -27,12 +27,18 @@ function prevImage() {
  */
 function createRequest() {
     var request = new XMLHttpRequest();
+    //Instagram API
+    var url = 'https://api.instagram.com/v1/tags/nofilter/media/recent?client_id=80e06c095ca7407aa27b695a5cea4f8a';
+    //var url = 'https://api.flickr.com/services/feeds/photos_public.gne';
+    //var url = 'https://www.googleapis.com/customsearch/v1?key=AIzaSyCxSXrrHLok8s4ulJo3ebeNPx3ZCkaZrIw&cx=017576662512468239146:omuauf_lfve&q=motorcycle';
+
     request.onreadystatechange = function () {
         var response = request.responseText;
         console.log(response);
     };
-    //Instagram API
-    request.open('GET', 'https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s320x320/e35/12142017_967266440010278_1916169648_n.jpg', true);
-    //request.open('GET', 'https://www.googleapis.com/customsearch/v1?key=AIzaSyCxSXrrHLok8s4ulJo3ebeNPx3ZCkaZrIw&cx=017576662512468239146:omuauf_lfve&q=motorcycle', true);
-    request.send(null);
+    if (request) {
+        request.open('GET', url, true);
+        //request.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:63342');
+        request.send(null);
+    }
 }
