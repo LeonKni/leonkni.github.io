@@ -1,9 +1,10 @@
 /**
  * @author Leon K.
  */
+var images = [];
 window.onload = function () {
     //OnLoad calls
-    createRequest();
+    requestApiImages();
 };
 
 /////// Helper Methods ////////
@@ -25,20 +26,23 @@ function prevImage() {
 /**
  * HTTP request.
  */
-function createRequest() {
+function requestApiImages() {
     var request = new XMLHttpRequest();
-    //Instagram API
-    var url = 'https://api.instagram.com/v1/tags/nofilter/media/recent?client_id=80e06c095ca7407aa27b695a5cea4f8a';
-    //var url = 'https://api.flickr.com/services/feeds/photos_public.gne';
-    //var url = 'https://www.googleapis.com/customsearch/v1?key=AIzaSyCxSXrrHLok8s4ulJo3ebeNPx3ZCkaZrIw&cx=017576662512468239146:omuauf_lfve&q=motorcycle';
+    var url = 'https://api.imgur.com/3/gallery';
 
+    //Authenticated GET
     request.onreadystatechange = function () {
-        var response = request.responseText;
-        console.log(response);
+        if (request.readyState === 4 && request.status === 200) {
+            var response = JSON.parse(request.responseText);
+            images = response.data;
+            document.getElementById('imageSlide').src = images[0].link + '.png';
+            console.log(response);
+        } else if (request.status === 403) {
+            alert('Your Imgur Authentication Token has expired.  Please renew.')
+        }
     };
-    if (request) {
-        request.open('GET', url, true);
-        //request.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:63342');
-        request.send(null);
-    }
+    request.open('GET', url, true);
+    request.setRequestHeader('Authorization', 'Bearer af220e24bce25f66becbecd113a20a0c14869b1e');
+    request.setRequestHeader('Accept', 'application/json');
+    request.send(null);
 }
