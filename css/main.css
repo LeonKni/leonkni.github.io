@@ -40,6 +40,10 @@ body {
     float: right;
 }
 
+.close:hover {
+    color: #C17D7D;
+}
+
 /* Slider */
 .slider {
     height: 500px;
@@ -149,6 +153,10 @@ body p {
 body a {
     text-decoration: none;
     font: menu;
+}
+
+body p:hover {
+    color: rgb(53, 51, 51);
 }
 
 #sliderCount, #imageTitle {
