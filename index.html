@@ -6,20 +6,27 @@
     <!------ CSS ------->
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-<a href="#lbWrap">
-    <h1>View Images</h1>
-</a>
+<div class="center center-inner">
+    <a href="#lbWrap">
+        <p>View Images</p>
+    </a>
+</div>
+
 
 <div class="slider lightbox" id="lbWrap">
-    <div id="frameWrapper">
+    <div class="center center-inner">
         <ul class="frames">
-            <li id="one" class="slide">
+            <li class="slide">
+                <h2 id="imageTitle"></h2>
                 <a href="#" class="close" onclick="resetPosition()">X</a>
                 <img id="imageSlide" src="">
                 <nav>
                     <a class="prev" onclick="prevImage()">&larr;</a>
                     <a class="next" onclick="nextImage()">&rarr;</a>
+
+                    <h2 id="sliderCount"></h2>
                 </nav>
             </li>
         </ul>

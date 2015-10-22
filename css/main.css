@@ -9,44 +9,59 @@
 }
 
 body {
-    padding: 50px;
+    padding: 400px;
 }
 
 .close {
-    content: 'X';
-    color: #777;
-    font: 14px/100% arial, sans-serif;
-    position: absolute;
-    right: 5px;
+    -moz-box-shadow: inset 0px -1px 5px 0px #ffffff;
+    -webkit-box-shadow: inset 0px -1px 5px 0px #ffffff;
+    box-shadow: inset 0px -1px 5px 0px #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+    background: -moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background: -webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background: -o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background: -ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+    background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0);
+    background-color: #ffffff;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 7px 9px;
     text-decoration: none;
-    text-shadow: 0 1px 0 #fff;
-    top: 5px;
+    text-shadow: 0px 1px 0px #ffffff;
+    float: right;
 }
 
 /* Slider */
 .slider {
-    height: 250px;
+    height: 500px;
     left: 50%;
-    /*margin: -125px -225px;*/
     position: absolute;
     top: 48%;
     width: 450px;
-    /*box-shadow*/
     -webkit-box-shadow: 0 0 5px #000;
     -moz-box-shadow: 0 0 5px #000;
     box-shadow: 0 0 5px #000;
 }
 
 .slider .frames {
-    height: 250px;
+    height: 500px;
     position: relative;
 }
 
 .slider .frames .slide {
-    height: 250px;
+    height: 500px;
     list-style: none;
     position: absolute;
-    width: 450px;
+    width: 550px;
 }
 
 .slider .slide:target {
@@ -54,8 +69,8 @@ body {
 }
 
 .slider .frames .slide img {
-    height: 250px;
-    width: 450px;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .slider .frames .slide nav a {
@@ -80,7 +95,6 @@ body {
 }
 
 .slider .frames .slide nav .prev {
-    /*border-radius*/
     -webkit-border-radius: 0 25px 25px 0;
     -moz-border-radius: 0 25px 25px 0;
     border-radius: 0 25px 25px 0;
@@ -88,7 +102,6 @@ body {
 }
 
 .slider .frames .slide nav .next {
-    /*border-radius*/
     -webkit-border-radius: 25px 0 0 25px;
     -moz-border-radius: 25px 0 0 25px;
     border-radius: 25px 0 0 25px;
@@ -99,63 +112,8 @@ body {
     background: #000
 }
 
-.slider .quicknav {
-    bottom: 0;
-    font-size: 0;
-    opacity: 0;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    z-index: 100;
-    margin-left: -14%;
-    margin-bottom: 4%;
-}
-
-.slider:hover .quicknav {
-    opacity: .9
-}
-
-.slider .quicknav li {
-    display: inline-block
-}
-
-.slider .quicknav a {
-    background: hsla(0, 0%, 100%, .9);
-    border: 1px solid hsla(0, 0%, 0%, .9);
-    /*border-radius*/
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    border-radius: 100%;
-    display: block;
-    height: 10px;
-    margin: 10px 5px;
-    text-decoration: none;
-    width: 10px;
-}
-
-.slider .quicknav a:hover {
-    background: hsla(0, 0%, 50%, .9)
-}
-
-.slider #one:target ~ .quicknav a[href="#one"],
-.slider #two:target ~ .quicknav a[href="#two"],
-.slider #three:target ~ .quicknav a[href="#three"],
-.slider #four:target ~ .quicknav a[href="#four"],
-.slider #five:target ~ .quicknav a[href="#five"] {
-    background: hsla(0, 0%, 0%, .9);
-    border-color: hsla(0, 0%, 100%, .9);
-    background: rgb(244, 246, 245);
-    /*box-shadow*/
-    -webkit-box-shadow: inset 0 0 3px #000, 0 0 2px rgba(0, 0, 0, .5), 0 2px 3px #666;
-    -moz-box-shadow: inset 0 0 3px #000, 0 0 2px rgba(0, 0, 0, .5), 0 2px 3px #666;
-    box-shadow: inset 0 0 3px #000, 0 0 2px rgba(0, 0, 0, .5), 0 2px 3px #666;
-}
-
 .lightbox {
-    /** Hide the lightbox */
     display: none;
-
-    /** Apply basic lightbox styling */
     position: fixed;
     z-index: 9999;
     width: 100%;
@@ -164,29 +122,69 @@ body {
     top: 0;
     left: 0;
     background: black;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.97);
 }
 
 .lightbox * {
-    /** Pad the lightbox image */
-    max-width: 90%;
-    max-height: 80%;
+    max-width: 100%;
+    max-height: 100%;
     margin-top: 2%;
 }
 
 .lightbox:target {
-    /** Show lightbox when it is target */
     display: block;
-
-    /** Remove default browser outline style */
     outline: none;
 }
 
 #frameWrapper {
-    margin-left: 33%;
-    margin-top: 17%;
+    margin-left: 39%;
+    margin-top: 10%;
 }
 
-h1 {
-    text-align: center;
+body p {
+    font-size: 6em;
+    color: rgba(125, 120, 120, 0.75);
+}
+
+body a {
+    text-decoration: none;
+    font: menu;
+}
+
+#sliderCount, #imageTitle {
+    color: white;
+}
+
+/**** Media Queries ****/
+@media (max-width: 1000px) {
+    .center {
+    }
+
+    .center-inner {
+        left: 25%;
+        top: 25%;
+        position: absolute;
+        width: 50%;
+        height: 300px;
+        text-align: center;
+        max-width: 500px;
+        max-height: 500px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .center {
+        left: 50%;
+        top: 25%;
+        position: absolute;
+    }
+
+    .center-inner {
+        width: 500px;
+        height: 100%;
+        margin-left: -250px;
+        text-align: center;
+        max-width: 500px;
+        max-height: 500px;
+    }
 }
