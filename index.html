@@ -13,14 +13,13 @@
 
 <div class="slider lightbox" id="lbWrap">
     <div id="frameWrapper">
-
         <ul class="frames">
             <li id="one" class="slide">
-                <a href="#" class="close">X</a>
-                <img id="imageSlide" src="http://lorempixel.com/450/250/animals" alt="Image not found.">
+                <a href="#" class="close" onclick="resetPosition()">X</a>
+                <img id="imageSlide" src="">
                 <nav>
-                    <a class="prev" onclick="">&larr;</a>
-                    <a class="next" onclick="changeImage()">&rarr;</a>
+                    <a class="prev" onclick="prevImage()">&larr;</a>
+                    <a class="next" onclick="nextImage()">&rarr;</a>
                 </nav>
             </li>
         </ul>

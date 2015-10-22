@@ -1,48 +1,81 @@
 /**
  * @author Leon K.
  */
+
 var images = [];
+var index = 0;
+
 window.onload = function () {
     //OnLoad calls
     requestApiImages();
 };
 
-/////// Helper Methods ////////
+
 /**
  * Next image.
  */
 function nextImage() {
-    document.getElementById('imageSlide').src = "img/3.jpg";
-    console.log('changed')
+    if (index < images.length - 1) {
+        console.log('NEXT - ' + (index + 1) + '/' + images.length);
+        document.getElementById('imageSlide').src = images[++index].link;
+    }
 }
 
 /**
  * Previous image.
  */
 function prevImage() {
-    document.getElementById('imageSlide').src = "img/2.jpg";
+    if (index > 0) {
+        console.log('PREV - ' + (index + 1) + '/' + images.length);
+        document.getElementById('imageSlide').src = images[--index].link;
+    }
+}
+/**
+ * Reset image scroller position.
+ */
+function resetPosition() {
+    index = 0;
+    document.getElementById('imageSlide').src = images[0].link;
 }
 
 /**
  * HTTP request.
  */
 function requestApiImages() {
-    var request = new XMLHttpRequest();
-    var url = 'https://api.imgur.com/3/gallery';
+    var galleryUrl = 'https://api.imgur.com/3/gallery';
+    createGalleryRequest('GET', galleryUrl);
+}
 
-    //Authenticated GET
+/**
+ * Get all image Ids in a gallery.
+ * @param methodType
+ * @param url
+ */
+function createGalleryRequest(methodType, url) {
+    var request = new XMLHttpRequest();
+    var dataType = 'application/json';
+    var token = 'Bearer f3a41fc4887671e74479acd921ca5161c168fbc1';
     request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
             var response = JSON.parse(request.responseText);
-            images = response.data;
-            document.getElementById('imageSlide').src = images[0].link + '.png';
+            //Save list of image IDs
+            for (var i = 0; i < response.data.length; i++) {
+                if (response.data[i].type === 'image/jpeg' && response.data[i].nsfw === false) {
+                    images.push({title: response.data[i].title, link: response.data[i].link + '.jpg'});
+                }
+            }
+            document.getElementById('imageSlide').src = images[0].link;
+            console.log('IMAGE IDs:');
             console.log(response);
         } else if (request.status === 403) {
-            alert('Your Imgur Authentication Token has expired.  Please renew.')
+            //API auth token sessions are timed
+            alert('Your API Authentication Token has expired.  Please renew.')
         }
+        //createImageRequest(methodType, url);
     };
-    request.open('GET', url, true);
-    request.setRequestHeader('Authorization', 'Bearer af220e24bce25f66becbecd113a20a0c14869b1e');
-    request.setRequestHeader('Accept', 'application/json');
+    //Authenticated GET
+    request.open(methodType, url, true);
+    request.setRequestHeader('Authorization', token);
+    request.setRequestHeader('Accept', dataType);
     request.send(null);
 }
