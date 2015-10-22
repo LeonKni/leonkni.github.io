@@ -76,6 +76,7 @@ function createGalleryRequest(methodType, url) {
             document.getElementById('imageSlide').src = images[0].link;
             document.getElementById('sliderCount').textContent = (index + 1) + '/' + images.length;
             document.getElementById('imageTitle').textContent = images[0].title;
+            alert('Your API Authentication Token has expired.\nPlease see README for instructions on renewing.');
         }
         else if (request.status === 403) {
             //API auth tokens are timed
