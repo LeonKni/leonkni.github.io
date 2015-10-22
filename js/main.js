@@ -62,7 +62,7 @@ function requestApiImages() {
 function createGalleryRequest(methodType, url) {
     var request = new XMLHttpRequest();
     var dataType = 'application/json';
-    var token = 'Bearer 9a99244c4ecaa44ad8d4ab1f60082518e1969cde';
+    var token = 'Bearer f403c4fbcfa224969da18616f4cf245d76c1f698';
     //Handle response
     request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
